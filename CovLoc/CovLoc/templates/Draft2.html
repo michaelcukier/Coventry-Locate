@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="assets/images/coventrylogo-128x120.png" type="image/x-icon">
+  <meta 
+  name='viewport' 
+  content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' 
+/>  <link rel="shortcut icon" href="/static/assets/images/coventrylogo-128x120.png" type="image/x-icon">
   <meta name="description" content="">
+  
   <title>Draft1</title>
-  <link rel="stylesheet" href="customize.css">
+  <link rel="stylesheet" href="/static/customize.css">
 <link rel="canonical" href="Draft2.html">
  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
 <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
@@ -58,7 +61,7 @@ div,span,h1,h2,h3,h4,h5,h6,p,blockquote,a,ol,ul,li,figcaption{font: inherit;}sec
     <nav class="headerbar sticky-nav">
       <div class="brand">
           <span class="brand-logo">
-              <amp-img src="assets/images/coventrylogo-500x471.png" layout="responsive" width="54.14012738853503" height="51" alt="Coventry UNiversity">
+              <amp-img src="/static/assets/images/coventrylogo-500x471.png" layout="responsive" width="54.14012738853503" height="51" alt="Coventry UNiversity">
                   
               </amp-img>
           </span>
@@ -99,6 +102,14 @@ div,span,h1,h2,h3,h4,h5,h6,p,blockquote,a,ol,ul,li,figcaption{font: inherit;}sec
 
     <!--This script is the heart of the application. It shows the map and has the code for different functionality-->
     <script>
+
+  function goThere () {
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer;
+              console.log("HEHHHHH");
+              directionsDisplay.setMap(map);
+              calculateAndDisplayRoute(directionsService, directionsDisplay);
+          }
       var map;
 
       //This function Handles the error if the users location can't be found or the user doesn't turn on location settings
@@ -237,9 +248,9 @@ div,span,h1,h2,h3,h4,h5,h6,p,blockquote,a,ol,ul,li,figcaption{font: inherit;}sec
               '<div id="room" class="mbr-col-lg-12 mbr-col-md-12 mbr-col-sm-12 mbr-col-xs-12">' +
               '<h2 class="room"><b>Room:</b></h2> ' +
               '</div>' +
-              '<div class="image mbr-col-lg-12 mbr-col-md-12 mbr-col-sm-12 mbr-col-xs-12"><img src="./assets/images/coventrylogo-500x471.png" height="100px/"></div>' +
+              '<div class="image mbr-col-lg-12 mbr-col-md-12 mbr-col-sm-12 mbr-col-xs-12"><img src="/static/assets/images/coventrylogo-500x471.png" height="100px/"></div>' +
               '<div id="goThere" class="getMeThere mbr-col-lg-12 mbr-col-md-12 mbr-col-sm-12 mbr-col-xs-12 align-center">' +
-              '<button id="goThere" class=\'input-group-btn btn btn-primary search-button\'><span class="glyphicon glyphicon-search btn-form" aria-hidden="true">Get Me There</span></button>' +
+              '<button onclick="goThere()" class=\'input-group-btn btn btn-primary search-button\'><span class="glyphicon glyphicon-search btn-form" aria-hidden="true">Get Me There</span></button>' +
               '</div>'+
               '</div>'+
               '</div>';
@@ -312,13 +323,6 @@ div,span,h1,h2,h3,h4,h5,h6,p,blockquote,a,ol,ul,li,figcaption{font: inherit;}sec
 
           //calculateAndDisplayRoute(directionsService, directionsDisplay);
 
-          /*var onGoThere = function() {
-              calculateAndDisplayRoute(directionsService, directionsDisplay);
-          };
-          var linkUp = document.getElementById(custominfowindow.goThere);
-          linkUp.addEventListener('click', function() {
-              calculateAndDisplayRoute(directionsService, directionsDisplay);
-          });*/
       };
 
       //Calculates and displays direction route the origin and destination can be set but variables will be used so
