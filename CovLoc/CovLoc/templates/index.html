@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
-    <link rel="shortcut icon" href="/static/assets/images/coventrylogo-128x120.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./static/assets/images/coventrylogo-128x120.png" type="image/x-icon">
     <meta name="description" content="">
 
     <title>CU Navigate</title>
-    <link rel="stylesheet" href="/static/customize.css">
+    <link rel="stylesheet" href="./static/customize.css">
     <link rel="canonical" href="Draft2.html">
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
     <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
@@ -60,7 +60,7 @@
     <nav class="headerbar sticky-nav">
         <div class="brand">
           <span class="brand-logo">
-              <amp-img src="/static/assets/images/coventrylogo-500x471.png" layout="responsive" width="54.14012738853503" height="51" alt="Coventry UNiversity">
+              <amp-img src="./static/assets/images/coventrylogo-500x471.png" layout="responsive" width="54.14012738853503" height="51" alt="Coventry UNiversity">
 
               </amp-img>
           </span>
@@ -86,7 +86,7 @@
             <form class='mbr-form pull-left align-center' action="" method="post" name="Search">
                 <div data-for="name" class='input-group pull-left'>
                     <input type='text' class='form-control search pull-left' name="name" data-form-field="Name" placeholder='Enter Room ID (ex: ECG24)' required>
-                    <button class="search-button pull-left" style="height: 50px;"><img src="/static/assets/images/search.png" style="width:20px;"/></button>
+                    <button class="search-button pull-left" style="height: 50px;"><img src="./static/assets/images/search.png" style="width:20px;"/></button>
                 </div>
             </form>
         </div>
@@ -164,7 +164,7 @@
         /*controlUI.style.backgroundColor = 'transparent';*/
         controlUI.style.border = '2px solid #fff';
         /*controlUI.style.border = 'none';*/
-        controlUI.style.marginTop = '20vh';
+        controlUI.style.marginTop = '25vh';
         controlUI.style.borderRadius = '3px';
         controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
         /*controlUI.style.boxShadow = 'none';*/
@@ -183,7 +183,7 @@
         controlText.style.paddingLeft = '5px';
         controlText.style.paddingRight = '5px';
         controlText.style.paddingTop = '12px';
-        controlText.innerHTML = '<img src="/static/assets/images/locate.png" style="width: 40px"/>';
+        controlText.innerHTML = '<img src="./static/assets/images/locate.png" style="width: 40px"/>';
         controlUI.appendChild(controlText);
 
         // Setup the click event listeners: simply set the map to Current location of the user.
@@ -201,7 +201,7 @@
         var Coventry = {lat:52.4071354, lng:-1.5035208};
         var ECB = {lat:52.4051975,lng:-1.4995755};
         var image = {
-            url: '/static/assets/images/marker2.png',
+            url: './static/assets/images/marker2.png',
             scaledSize: new google.maps.Size(50, 50)
         };*/
 
@@ -248,7 +248,7 @@
             // Adds markers to the map.
 
             var image = {
-                url: '/static/assets/images/marker2.png',
+                url: './static/assets/images/marker2.png',
                 scaledSize: new google.maps.Size(50, 50)
             };
             var buildings = [
@@ -288,7 +288,7 @@
                     '<div id="room" class="mbr-col-lg-12 mbr-col-md-12 mbr-col-sm-12 mbr-col-xs-12">' +
                     '<h2 class="room"><b>Room:</b></h2> ' +
                     '</div>' +
-                    '<div class="image mbr-col-lg-12 mbr-col-md-12 mbr-col-sm-12 mbr-col-xs-12"><img src="/static/assets/images/coventrylogo-500x471.png" height="100px/"></div>' +
+                    '<div class="image mbr-col-lg-12 mbr-col-md-12 mbr-col-sm-12 mbr-col-xs-12"><img src="./static/assets/images/coventrylogo-500x471.png" height="100px/"></div>' +
                     '<div id="goThere" class="getMeThere mbr-col-lg-12 mbr-col-md-12 mbr-col-sm-12 mbr-col-xs-12 align-center">' +
                     '<button onclick="goThere(map, destination)" class=\'input-group-btn btn btn-primary search-button\'><span class="glyphicon glyphicon-search btn-form" aria-hidden="true">Get Me There</span></button>' +
                     '</div>'+
