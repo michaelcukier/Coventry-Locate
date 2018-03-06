@@ -7,9 +7,18 @@
     <link rel="shortcut icon" href="./static/assets/images/coventrylogo-128x120.png" type="image/x-icon">
     <meta name="description" content="">
 
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
     <title>CU Navigate</title>
     <link rel="stylesheet" href="./static/customize.css">
-    <link rel="canonical" href="Draft2.html">
+    <link rel="canonical" href="index.html">
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
     <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=cyrillic" rel="stylesheet">
@@ -23,6 +32,42 @@
     <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
 
+
+    <script>
+        $(document).on("focus keyup", "input.autocomplete", function() {
+            // Cache useful selectors
+            var $input = $(this);
+            var $dropdown = $input.next("ul.dropdown-menu");
+
+            // Create the no matches entry if it does not exists yet
+            if (!$dropdown.data("containsNoMatchesEntry")) {
+                $("input.autocomplete + ul.dropdown-menu").append('<li class="no-matches hidden"><a>No matches</a></li>');
+                $dropdown.data("containsNoMatchesEntry", true);
+            }
+
+            // Show only matching values
+            $dropdown.find("li:not(.no-matches)").each(function(key, li) {
+                var $li = $(li);
+                $li[new RegExp($input.val(), "i").exec($li.text()) ? "removeClass" : "addClass"]("hidden");
+            });
+
+            // Show a specific entry if we have no matches
+            $dropdown.find("li.no-matches")[$dropdown.find("li:not(.no-matches):not(.hidden)").length > 0 ? "addClass" : "removeClass"]("hidden");
+        });
+        $(document).on("click", "input.autocomplete + ul.dropdown-menu li", function(e) {
+            // Prevent any action on the window location
+            e.preventDefault();
+
+            // Cache useful selectors
+            $li = $(this);
+            $input = $li.parent("ul").prev("input");
+
+            // Update input text with selected entry
+            if (!$li.is(".no-matches")) {
+                $input.val($li.text());
+            }
+        });
+    </script>
 
 </head>
 <body><amp-sidebar id="sidebar" class="cid-qIaoTOVgTV" layout="nodisplay" side="right">
@@ -79,28 +124,41 @@
 
 <!--This section is the main body that shows everything. It contains the search bar and the container that holds the map  -->
 <section class="map cid-qIahDDWFMN landing-page" data-jarallax-original-styles="null" id="map1-2">
-
-
     <div class="mbr-row mbr-justify-content-center">
         <div class="map-title search-bar mbr-col-sm-12 mbr-col-md-12 align-center">
-            <form class='mbr-form pull-left align-center' action="" method="post" name="Search">
-                <div data-for="name" class='input-group pull-left'>
-                    <input type='text' class='form-control search pull-left' name="name" data-form-field="Name" placeholder='Enter Room ID (ex: ECG24)' required>
+            <form class="form-horizontal" role="form" action="" method="post" name="Search">
+                <div class="form-group" data-for="name">
+                    <div class="">
+                        <input type="text" class="autocomplete form-control search pull-left" name="name" id="sampleAutocomplete" data-toggle="dropdown" data-form-field="Name" placeholder='Enter Room ID (ex: ECG24)' required />
+                        <ul class="dropdown-menu" role="menu" id="end">
+                            <li value="{lat:52.4071354, lng:-1.5035208}"><a>Coventry University</a></li>
+                            <li value="{lat:52.4051975, lng:-1.4995755}"><a>Engineering & Computing Building</a></li>
+                            <li><a>Lanchester Library</a></li>
+                            <li><a>The Hub</a></li>
+                            <li><a>ECG-24</a></li>
+                            <!--buildings can go top-->
+                            <li role="separator" class="divider"></li>
+                            <!--rooms can go bottom-->
+                            <li value="{lat:52.4071354, lng:-1.5035208}"><a>Coventry University</a></li>
+                            <li value="{lat:52.4051975, lng:-1.4995755}"><a>Engineering & Computing Building</a></li>
+                            <li><a>Lanchester Library</a></li>
+                            <li><a>The Hub</a></li>
+                            <li><a>ECG-24</a></li>
+                        </ul>
+                    </div>
                     <button class="search-button pull-left" style="height: 50px;"><img src="./static/assets/images/search.png" style="width:20px;"/></button>
                 </div>
             </form>
         </div>
-        <div id="map" class="google-map mbr-fullscreen " >
-
+        <div id="map" class="google-map mbr-fullscreen" >
             <amp-iframe src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmvwsqoa95rNhKwvjQ_DpefokXZw4iN1o&callback=initMap" height: "100%"; layout="fixed-height" sandbox="allow-scripts allow-same-origin                                     allow-popups" frameborder="0">
             <h4 placeholder="">Google Map Initialization...</h4>
             </amp-iframe></div>
-
     </div>
 </section>
 
 
-<!--This script is the heart of the application. It shows the map and has the code for different functionality-->
+<!-- search pull-left This script is the heart of the application. It shows the map and has the code for different functionality-->
 <script>
 
     var map;
@@ -296,7 +354,11 @@
                     '</div>';
 
                 var infowindow = new google.maps.InfoWindow({
-                    content: contentString
+                    content: contentString,
+                    maxWidth: 200
+                });
+                google.maps.event.addListener(map, "click", function() {
+                    infowindow.close();
                 });
 
 
@@ -314,7 +376,7 @@
             });
 
             var ecbMarker = makeMarker(buildings[1]);
-            var ecbInfowindow = popUpContent(map, buildings[1], ecbDestination);
+            var ecbInfowindow = popUpContent(map, buildings[1]);
             ecbDestination = destination;
             ecbMarker.addListener('click', function() {
                 ecbInfowindow.open(map, ecbMarker)
@@ -322,6 +384,7 @@
 
 
         }
+        //document.getElementById('end').addEventListener('change', onChangeHandler);
     };
 
     //Calculates and displays direction route the origin and destination can be set but variables will be used so
@@ -677,6 +740,8 @@
 <!--This script is the key that runs the whole map. Without it you won't even see a map -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmvwsqoa95rNhKwvjQ_DpefokXZw4iN1o&callback=initMap"
         async defer></script>
+
+
 
 </body>
 
