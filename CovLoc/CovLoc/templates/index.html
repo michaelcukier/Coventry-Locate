@@ -131,19 +131,9 @@
                     <div class="">
                         <input type="text" class="autocomplete form-control search pull-left" name="name" id="sampleAutocomplete" data-toggle="dropdown" data-form-field="Name" placeholder='Enter Room ID (ex: ECG24)' required />
                         <ul class="dropdown-menu" role="menu" id="end">
-                            <li value="{lat:52.4071354, lng:-1.5035208}"><a>Coventry University</a></li>
-                            <li value="{lat:52.4051975, lng:-1.4995755}"><a>Engineering & Computing Building</a></li>
-                            <li><a>Lanchester Library</a></li>
-                            <li><a>The Hub</a></li>
-                            <li><a>ECG-24</a></li>
-                            <!--buildings can go top-->
-                            <li role="separator" class="divider"></li>
-                            <!--rooms can go bottom-->
-                            <li value="{lat:52.4071354, lng:-1.5035208}"><a>Coventry University</a></li>
-                            <li value="{lat:52.4051975, lng:-1.4995755}"><a>Engineering & Computing Building</a></li>
-                            <li><a>Lanchester Library</a></li>
-                            <li><a>The Hub</a></li>
-                            <li><a>ECG-24</a></li>
+                        	{% for elem in array_of_buildings %}
+                        		<li style='margin: 5px' value=""> {{elem}} </li>
+                        	{% endfor %}
                         </ul>
                     </div>
                     <button class="search-button pull-left" style="height: 50px;"><img src="./static/assets/images/search.png" style="width:20px;"/></button>
